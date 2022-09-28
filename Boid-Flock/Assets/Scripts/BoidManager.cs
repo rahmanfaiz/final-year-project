@@ -42,6 +42,37 @@ public class BoidManager : MonoBehaviour
         RandomSpawnInCircle();
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        foreach (BoidAgent boid in boids)
+        {
+            List<Transform> context = GetNearbyObjects(boid);
+            Vector2 move = behavior.CalculateMove(boid, context, this);
+            if(move.sqrMagnitude > squareMaxSpeed)
+            {
+                move = move.normalized * maxSpeed;
+            }
+
+            boid.Move(move);
+        }   
+    }
+
+    private List<Transform> GetNearbyObjects(BoidAgent boid)
+    {
+        List<Transform> context = new List<Transform>();
+        Collider2D[] contextColliders = Physics2D.OverlapCircleAll(boid.transform.position, perceptionRadius);
+        foreach (Collider2D c in contextColliders)
+        {
+            if (c != boid.AgentCollider)
+            {
+                context.Add(c.transform);
+            }
+        }
+
+        return context;
+    }
+
     private void RandomSpawnInCircle()
     {
         for (int i = 0; i < boidsQuantity; i++)
@@ -52,11 +83,5 @@ public class BoidManager : MonoBehaviour
             newBoid.name = "Boid" + i;
             boids.Add(newBoid);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
