@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public abstract class BoidBehavior : ScriptableObject
 {
     //agent : boid we're working with //context : list of transform that interact thru collider (like neighbours or obstacles) //flock : the script that handles the flock via boidmanager

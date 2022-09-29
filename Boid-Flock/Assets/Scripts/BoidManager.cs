@@ -23,13 +23,13 @@ public class BoidManager : MonoBehaviour
     public float perceptionRadius = 1.5f;
 
     [Range(0f, 1f)]
-    public float separationRadiusMultiplier = 0.5f;
+    public float avoidanceRadiusMultiplier = 0.5f;
 
     //ease the math load
     float squareMaxSpeed;
     float squarePerceptionRadius;
-    float squareSeparationRadius;
-    public float SquareAvoidanceRadius { get { return squareSeparationRadius; } }
+    float squareAvoidanceRadius;
+    public float SquareAvoidanceRadius { get { return squareAvoidanceRadius; } }
 
 
     // Start is called before the first frame update
@@ -37,7 +37,7 @@ public class BoidManager : MonoBehaviour
     {
         squareMaxSpeed = maxSpeed * maxSpeed;
         squarePerceptionRadius = perceptionRadius * perceptionRadius;
-        squareSeparationRadius = perceptionRadius * separationRadiusMultiplier * separationRadiusMultiplier;
+        squareAvoidanceRadius = perceptionRadius * avoidanceRadiusMultiplier * avoidanceRadiusMultiplier;
 
         RandomSpawnInCircle();
     }
@@ -49,6 +49,7 @@ public class BoidManager : MonoBehaviour
         {
             List<Transform> context = GetNearbyObjects(boid);
             Vector2 move = behavior.CalculateMove(boid, context, this);
+            move *= driveFactor;
             if(move.sqrMagnitude > squareMaxSpeed)
             {
                 move = move.normalized * maxSpeed;
