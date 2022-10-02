@@ -153,12 +153,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boidPrefab: {fileID: 2671170046303570148, guid: 2916ef6b46b3ca34abbf26c64a9d92e7, type: 3}
-  behavior: {fileID: 0}
+  behavior: {fileID: 11400000, guid: 8a9ba9663fca53142b00f231ee84d52a, type: 2}
   boidsQuantity: 250
   driveFactor: 10
   maxSpeed: 5
   perceptionRadius: 1.5
-  separationRadiusMultiplier: 0.5
+  avoidanceRadiusMultiplier: 0.5
 --- !u!4 &455611972
 Transform:
   m_ObjectHideFlags: 0
@@ -209,7 +209,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.35323957, g: 0.36995667, b: 0.3962264, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

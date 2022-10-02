@@ -18,6 +18,6 @@ public class BoidAgent : MonoBehaviour
     public void Move(Vector2 positionOffset)
     {
         transform.up = positionOffset;
-        transform.position = positionOffset * Time.deltaTime;
+        transform.position += (Vector3) positionOffset * Time.deltaTime;
     }
 }
