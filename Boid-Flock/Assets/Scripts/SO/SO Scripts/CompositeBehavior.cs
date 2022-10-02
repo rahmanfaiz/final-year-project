@@ -10,17 +10,17 @@ public class CompositeBehavior : BoidBehavior
 
     public override Vector2 CalculateMove(BoidAgent agent, List<Transform> context, BoidManager flock)
     {
-        //handle data mismatch
+        //nge-handle jumlah data yang ga sesuai antara behavior dengan weightnya
         if (weights.Length != behaviors.Length)
         {
             Debug.LogError("Data mismatch in " + name, this);
             return Vector2.zero;
         }
 
-        //set up move
+        //nge-set up move
         Vector2 move = Vector2.zero;
 
-        //iterate through behaviors
+        //iterasi keseluruhan behavior
         for (int i = 0; i < behaviors.Length; i++)
         {
             Vector2 partialMove = behaviors[i].CalculateMove(agent, context, flock) * weights[i];

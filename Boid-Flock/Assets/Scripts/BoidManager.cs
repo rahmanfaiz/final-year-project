@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BoidManager : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class BoidManager : MonoBehaviour
     List<BoidAgent> boids = new List<BoidAgent>();
     public BoidBehavior behavior;
 
-    const float BOID_DENSITY = 0.08f;
+    const float BOID_DENSITY = 0.1f;
     
     [Range(10, 500)]
     public int boidsQuantity = 250;
@@ -37,14 +38,27 @@ public class BoidManager : MonoBehaviour
     {
         squareMaxSpeed = maxSpeed * maxSpeed;
         squarePerceptionRadius = perceptionRadius * perceptionRadius;
-        squareAvoidanceRadius = perceptionRadius * avoidanceRadiusMultiplier * avoidanceRadiusMultiplier;
+        squareAvoidanceRadius = squarePerceptionRadius * avoidanceRadiusMultiplier * avoidanceRadiusMultiplier;
 
-        RandomSpawnInCircle();
+        for (int i = 0; i < boidsQuantity; i++)
+        {
+            BoidAgent newBoid = Instantiate(boidPrefab,
+                Random.insideUnitCircle * boidsQuantity * BOID_DENSITY,
+                Quaternion.Euler(Vector3.forward * Random.Range(0f, 360f)), transform);
+            newBoid.name = "Boid" + i;
+            boids.Add(newBoid);
+        }
+        //RandomSpawnInCircle();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
         foreach (BoidAgent boid in boids)
         {
             List<Transform> context = GetNearbyObjects(boid);
