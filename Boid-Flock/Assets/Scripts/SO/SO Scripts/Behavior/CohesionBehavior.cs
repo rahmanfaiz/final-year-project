@@ -25,10 +25,11 @@ public class CohesionBehavior : BoidBehavior
 
         //buat offsetnya dari posisi agent
         cohesionMove -= (Vector2)agent.transform.position;
-        
+
         //biar steer-nya smooth 
         cohesionMove = Vector2.SmoothDamp(agent.transform.up, cohesionMove, ref currentVelocity, smoothTime);
         
+
         return cohesionMove;
     }
 }

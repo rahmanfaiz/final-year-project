@@ -156,7 +156,7 @@ MonoBehaviour:
   behavior: {fileID: 11400000, guid: 8a9ba9663fca53142b00f231ee84d52a, type: 2}
   boidsQuantity: 250
   driveFactor: 10
-  maxSpeed: 5
+  maxSpeed: 3
   perceptionRadius: 1.5
   avoidanceRadiusMultiplier: 0.5
 --- !u!4 &455611972
@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -199,6 +200,26 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed3633cdb2a01624387739f5d8e7be58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 519420031}
+  panSpeed: 20
+  panBorderThickness: 10
+  panLimit: {x: 5, y: 5}
+  maxZoom: 3
+  minZoom: 10
+  sensitivity: 1
+  speed: 20
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -208,8 +229,8 @@ Camera:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.35323957, g: 0.36995667, b: 0.3962264, a: 0}
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.3582236, g: 0.38767752, b: 0.4339623, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -226,17 +247,17 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
-  m_Depth: -1
+  orthographic size: 10
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
-  m_TargetEye: 0
+  m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 0
+  m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 0
