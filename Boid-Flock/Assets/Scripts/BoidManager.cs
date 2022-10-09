@@ -32,10 +32,15 @@ public class BoidManager : MonoBehaviour
     float squareAvoidanceRadius;
     public float SquareAvoidanceRadius { get { return squareAvoidanceRadius; } }
 
+    float refSpeed;
+    Vector3 prevPos;
+    Vector3 refVel;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        
         squareMaxSpeed = maxSpeed * maxSpeed;
         squarePerceptionRadius = perceptionRadius * perceptionRadius;
         squareAvoidanceRadius = squarePerceptionRadius * avoidanceRadiusMultiplier * avoidanceRadiusMultiplier;
@@ -58,9 +63,12 @@ public class BoidManager : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-
+        
         foreach (BoidAgent boid in boids)
         {
+            refVel = (boid.transform.position - prevPos) / Time.deltaTime;
+            refSpeed = refVel.magnitude;
+
             List<Transform> context = GetNearbyObjects(boid);
             Vector2 move = behavior.CalculateMove(boid, context, this);
             move *= driveFactor;
@@ -70,6 +78,9 @@ public class BoidManager : MonoBehaviour
             }
 
             boid.Move(move);
+            
+            //print(boid.name + "'s speed is " + refSpeed);
+            prevPos = boid.transform.position;
         }   
     }
 
