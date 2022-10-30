@@ -33,8 +33,8 @@ public class BoidManager : MonoBehaviour
     public float SquareAvoidanceRadius { get { return squareAvoidanceRadius; } }
 
     float refSpeed;
-    Vector3 prevPos;
-    Vector3 refVel;
+    Vector3 prevPos = Vector3.zero;
+    Vector3 refVel = Vector3.zero;
 
 
     // Start is called before the first frame update
@@ -66,8 +66,11 @@ public class BoidManager : MonoBehaviour
         
         foreach (BoidAgent boid in boids)
         {
-            refVel = (boid.transform.position - prevPos) / Time.deltaTime;
+            //print(boid.name + "'s transform is " + (boid.transform.position) + "Time: " + Time.deltaTime);
+            refVel = (boid.transform.position - prevPos);
+            refVel /= Time.deltaTime;
             refSpeed = refVel.magnitude;
+            
 
             List<Transform> context = GetNearbyObjects(boid);
             Vector2 move = behavior.CalculateMove(boid, context, this);
@@ -78,9 +81,13 @@ public class BoidManager : MonoBehaviour
             }
 
             boid.Move(move);
-            
+
+            //string heading = "Boid,Speed";
+            //CSVManager.Instance.WriteCSV(heading, boid.name, refSpeed);
+            //print(boid.name + "'s velocity is " + (boid.transform.position - prevPos) + "Time" + Time.deltaTime);
             //print(boid.name + "'s speed is " + refSpeed);
             prevPos = boid.transform.position;
+            //print(boid.name + "'s transform is " + (prevPos) + "Time: " + Time.deltaTime);
         }   
     }
 
