@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class BoidManager : MonoBehaviour
 {
+    [SerializeField] private bool isPrintingData;
     public BoidAgent boidPrefab;
     List<BoidAgent> boids = new List<BoidAgent>();
     public BoidBehavior behavior;
@@ -82,10 +83,14 @@ public class BoidManager : MonoBehaviour
             Vector3 velocityData = move;
             float speedData = move.magnitude;
 
-            Debug.Log("speed of " + boid.name + " is " + move);
+            if (isPrintingData)
+            {
+                Debug.Log("speed of " + boid.name + " is " + move);
 
-            string heading = "Boid,Speed";
-            CSVManager.Instance.WriteCSV(heading, boid.name, speedData, Time.timeSinceLevelLoad);
+                string heading = "Boid,Speed";
+                CSVManager.Instance.WriteCSV(heading, boid.name, speedData, Time.timeSinceLevelLoad);
+            }
+            
         }   
     }
 
