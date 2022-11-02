@@ -21,7 +21,7 @@ public class CSVManager : MonoBehaviour
       
     }
 
-    public void WriteCSV(string heading, string name, float value)
+    public void WriteCSV(string heading, string name, float value, float timeElapsed)
     {
         if (!hasInit) { 
             tw = new StreamWriter(filename, false);
@@ -31,7 +31,7 @@ public class CSVManager : MonoBehaviour
         }
 
         tw = new StreamWriter(filename, true);
-        tw.WriteLine(name + "," + value);
+        tw.WriteLine(name + "," + value + "," + timeElapsed);
         tw.Close();
     }
     
