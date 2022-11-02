@@ -19,7 +19,6 @@ public class BoidManager : MonoBehaviour
     
     [Range(1f, 100f)]
     public float maxSpeed  = 5f;
-    public Vector2 minMaxSpeedLimit;
 
     [Range(1f, 10f)]
     public float perceptionRadius = 1.5f;
@@ -33,16 +32,18 @@ public class BoidManager : MonoBehaviour
     float squareAvoidanceRadius;
     public float SquareAvoidanceRadius { get { return squareAvoidanceRadius; } }
 
+    float refSpeed;
+    Vector3 prevPos = Vector3.zero;
+    Vector3 refVel = Vector3.zero;
+
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
         squareMaxSpeed = maxSpeed * maxSpeed;
-
         squarePerceptionRadius = perceptionRadius * perceptionRadius;
         squareAvoidanceRadius = squarePerceptionRadius * avoidanceRadiusMultiplier * avoidanceRadiusMultiplier;
-        
 
         for (int i = 0; i < boidsQuantity; i++)
         {
@@ -64,28 +65,29 @@ public class BoidManager : MonoBehaviour
         }
         
         foreach (BoidAgent boid in boids)
-        {            
+        {
+            //print(boid.name + "'s transform is " + (boid.transform.position) + "Time: " + Time.deltaTime);
+            refVel = (boid.transform.position - prevPos);
+            refVel /= Time.deltaTime;
+            refSpeed = refVel.magnitude;
+            
 
             List<Transform> context = GetNearbyObjects(boid);
             Vector2 move = behavior.CalculateMove(boid, context, this);
             move *= driveFactor;
-
-            minMaxSpeedLimit.y = maxSpeed;
-            
             if(move.sqrMagnitude > squareMaxSpeed)
             {
-                move = move.normalized * Random.Range(minMaxSpeedLimit.x, minMaxSpeedLimit.y);
+                move = move.normalized * maxSpeed;
             }
 
             boid.Move(move);
 
-            Vector3 velocityData = move;
-            float speedData = move.magnitude;
-
-            Debug.Log("speed of " + boid.name + " is " + move);
-
-            string heading = "Boid,Speed";
-            CSVManager.Instance.WriteCSV(heading, boid.name, speedData, Time.timeSinceLevelLoad);
+            //string heading = "Boid,Speed";
+            //CSVManager.Instance.WriteCSV(heading, boid.name, refSpeed);
+            //print(boid.name + "'s velocity is " + (boid.transform.position - prevPos) + "Time" + Time.deltaTime);
+            //print(boid.name + "'s speed is " + refSpeed);
+            prevPos = boid.transform.position;
+            //print(boid.name + "'s transform is " + (prevPos) + "Time: " + Time.deltaTime);
         }   
     }
 

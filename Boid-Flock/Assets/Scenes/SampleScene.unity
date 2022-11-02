@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &358826089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d606dc4a8904dd439e923bc68247ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fileName: speedData
+  fileName: velocitydata
 --- !u!4 &358826090
 Transform:
   m_ObjectHideFlags: 0
@@ -200,8 +200,7 @@ MonoBehaviour:
   behavior: {fileID: 11400000, guid: 8a9ba9663fca53142b00f231ee84d52a, type: 2}
   boidsQuantity: 250
   driveFactor: 10
-  maxSpeed: 5
-  minMaxSpeedLimit: {x: 1, y: 5}
+  maxSpeed: 3
   perceptionRadius: 1.5
   avoidanceRadiusMultiplier: 0.5
 --- !u!4 &455611972

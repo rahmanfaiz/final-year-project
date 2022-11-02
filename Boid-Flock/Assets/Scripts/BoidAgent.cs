@@ -15,9 +15,9 @@ public class BoidAgent : MonoBehaviour
         agentCollider = GetComponent<Collider2D>();
     }
 
-    public void Move(Vector2 velocity)
+    public void Move(Vector2 positionOffset)
     {
-        transform.up = velocity;
-        transform.position += (Vector3) velocity * Time.deltaTime;
+        transform.up = positionOffset;
+        transform.position += (Vector3) positionOffset * Time.deltaTime;
     }
 }
