@@ -7,7 +7,7 @@ public class BoidAgent : MonoBehaviour
 {
     Collider2D agentCollider;
     public Collider2D AgentCollider { get { return agentCollider; } }
-
+    public Vector2 currentVelocity;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +17,7 @@ public class BoidAgent : MonoBehaviour
 
     public void Move(Vector2 velocity)
     {
+        currentVelocity = velocity;
         transform.up = velocity;
         transform.position += (Vector3) velocity * Time.deltaTime;
     }

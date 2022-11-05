@@ -21,6 +21,7 @@ public class CohesionBehavior : BoidBehavior
         {
             cohesionMove += (Vector2)item.position;
         }
+        
         cohesionMove /= context.Count;
 
         //buat offsetnya dari posisi agent

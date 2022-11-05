@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f3227ed64b2ae04c94eb4cdeb7a5eb6, type: 3}
-  m_Name: default
+  m_Name: Wander + Stay In Radius
   m_EditorClassIdentifier: 
   behaviors:
-  - {fileID: 11400000, guid: 62ac7847cbda19044a902c10f50a2e24, type: 2}
+  - {fileID: 11400000, guid: 74a39bc92edba484ca39e6310027c328, type: 2}
+  - {fileID: 11400000, guid: 1cf152b23b15bcd44965f23e46b97338, type: 2}
   - {fileID: 11400000, guid: e1fad53a48657ea47b8ae17898f62ec6, type: 2}
   - {fileID: 11400000, guid: 7f4135fccb78ae348948939707adbfcf, type: 2}
-  - {fileID: 11400000, guid: 1cf152b23b15bcd44965f23e46b97338, type: 2}
   weights:
-  - 4
   - 1
-  - 1
-  - 0.1
+  - 0.5
+  - 0
+  - 0

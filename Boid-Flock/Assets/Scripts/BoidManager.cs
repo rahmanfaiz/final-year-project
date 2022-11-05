@@ -20,7 +20,7 @@ public class BoidManager : MonoBehaviour
     
     [Range(1f, 100f)]
     public float maxSpeed  = 5f;
-    public Vector2 minMaxSpeedLimit;
+    //public Vector2 minMaxSpeedLimit;
 
     [Range(1f, 10f)]
     public float perceptionRadius = 1.5f;
@@ -71,11 +71,10 @@ public class BoidManager : MonoBehaviour
             Vector2 move = behavior.CalculateMove(boid, context, this);
             move *= driveFactor;
 
-            minMaxSpeedLimit.y = maxSpeed;
-            
+          
             if(move.sqrMagnitude > squareMaxSpeed)
             {
-                move = move.normalized * Random.Range(minMaxSpeedLimit.x, minMaxSpeedLimit.y);
+                move = move.normalized * maxSpeed;
             }
 
             boid.Move(move);
