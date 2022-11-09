@@ -5,13 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class BoidManager : MonoBehaviour
 {
+    [Header("Data")]
     [SerializeField] private bool isPrintingData;
+    public DataList speedDataFile;
+    public DataList clusterDataFile;
+
+    [Header("Boid References")]
     public BoidAgent boidPrefab;
     List<BoidAgent> boids = new List<BoidAgent>();
     public BoidBehavior behavior;
 
     const float BOID_DENSITY = 0.1f;
     
+    [Header("Boid Value")]
     [Range(10, 500)]
     public int boidsQuantity = 250;
 
@@ -84,26 +90,44 @@ public class BoidManager : MonoBehaviour
 
             if (isPrintingData)
             {
-                Debug.Log("speed of " + boid.name + " is " + move);
+                //-----Speed Data------
+                //Debug.Log("speed of " + boid.name + " is " + move);
+                string objectname = boid.name;
+                
+                speedDataFile.objectname = objectname;
+                speedDataFile.value1 = speedData;
+                speedDataFile.value2 = Time.timeSinceLevelLoad;
 
-                string heading = "Boid,Speed";
-                CSVManager.Instance.WriteCSV(heading, boid.name, speedData, Time.timeSinceLevelLoad);
+                CSVManager.Instance.InitAndWriteCSV(speedDataFile);
+                //CSVManager.Instance.WriteCSV(heading, boid.name, speedData, Time.timeSinceLevelLoad);
+
+                //-----Cluster Data------
+
+                Debug.Log(Time.timeSinceLevelLoad);
+                CSVManager.Instance.InitAndWriteCSV(clusterDataFile);
+
             }
-            
+
         }   
     }
 
     private List<Transform> GetNearbyObjects(BoidAgent boid)
     {
+
+
         List<Transform> context = new List<Transform>();
         Collider2D[] contextColliders = Physics2D.OverlapCircleAll(boid.transform.position, perceptionRadius);
         foreach (Collider2D c in contextColliders)
         {
+            clusterDataFile.objectname = boid.name;
             if (c != boid.AgentCollider)
             {
+                clusterDataFile.objectinteracted = c.name;
                 context.Add(c.transform);
             }
+            clusterDataFile.value2 = Time.timeSinceLevelLoad;
         }
+
 
         return context;
     }
