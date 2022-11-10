@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Behavior/Wander")]
-public class Wander : BoidBehavior
+public class WanderBehavior : BoidBehavior
 {
     public float CIRCLE_DISTANCE;
     public float CIRCLE_RADIUS;
