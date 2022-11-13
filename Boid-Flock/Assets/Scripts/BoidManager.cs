@@ -13,6 +13,7 @@ public class BoidManager : MonoBehaviour
     [Header("Boid References")]
     public BoidAgent boidPrefab;
     List<BoidAgent> boids = new List<BoidAgent>();
+    //public BoidBehavior defaultBehavior;
     public BoidBehavior behavior;
 
     const float BOID_DENSITY = 0.1f;
@@ -44,7 +45,7 @@ public class BoidManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
         squareMaxSpeed = maxSpeed * maxSpeed;
 
         squarePerceptionRadius = perceptionRadius * perceptionRadius;

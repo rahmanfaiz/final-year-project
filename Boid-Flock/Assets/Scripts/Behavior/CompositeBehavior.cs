@@ -7,8 +7,7 @@ using UnityEngine.UI;
 public class CompositeBehavior : BoidBehavior
 {
     public BoidBehavior[] behaviors;
-    private SliderManager _slideManager;
-    [SerializeField] private Slider[] _sliders;
+
     [Range(0,10)]
     public float[] weights;
 
@@ -24,14 +23,6 @@ public class CompositeBehavior : BoidBehavior
         //nge-set up move
         Vector2 move = Vector2.zero;
 
-        _slideManager = FindObjectOfType<SliderManager>();
-        int slidersLength = _slideManager.sliders.Length;
-        _sliders = new Slider[slidersLength];
-        for (int i = 0; i < slidersLength; i++)
-        {
-            _sliders[i] = _slideManager.sliders[i].GetComponentInChildren<Slider>();
-            weights[i] = _sliders[i].value;
-        }
 
         //iterasi keseluruhan behavior
         for (int i = 0; i < behaviors.Length; i++)

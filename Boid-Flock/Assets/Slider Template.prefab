@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6477768133697483407}
   - component: {fileID: 6477768133697483408}
+  - component: {fileID: 8628567553164605177}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -89,7 +90,34 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8628567553164605177}
+        m_TargetAssemblyTypeName: SliderValue, Assembly-CSharp
+        m_MethodName: onValueCheck
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8628567553164605177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6477768133697483406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ae5badac24c1d24dacf43ca11c9542e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  mySlider: {fileID: 6477768133697483408}
+  behavior: {fileID: 11400000, guid: 557d5a705a39c074fb64e3e066907a76, type: 2}
 --- !u!1 &6477768134234229035
 GameObject:
   m_ObjectHideFlags: 0
