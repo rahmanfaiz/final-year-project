@@ -13,6 +13,7 @@ public class BoidManager : MonoBehaviour
     [Header("Boid References")]
     public BoidAgent boidPrefab;
     List<BoidAgent> boids = new List<BoidAgent>();
+    //public BoidBehavior defaultBehavior;
     public BoidBehavior behavior;
 
     const float BOID_DENSITY = 0.1f;
@@ -26,6 +27,9 @@ public class BoidManager : MonoBehaviour
     
     [Range(1f, 100f)]
     public float maxSpeed  = 5f;
+
+    [Range(1f, 100f)]
+    public float minSpeed = 1f;
     //public Vector2 minMaxSpeedLimit;
 
     [Range(1f, 10f)]
@@ -36,6 +40,7 @@ public class BoidManager : MonoBehaviour
 
     //ease the math load
     float squareMaxSpeed;
+    float squareMinSpeed;
     float squarePerceptionRadius;
     float squareAvoidanceRadius;
     public float SquareAvoidanceRadius { get { return squareAvoidanceRadius; } }
@@ -44,8 +49,9 @@ public class BoidManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Debug.Log(Screen.width + " " + Screen.height);
         squareMaxSpeed = maxSpeed * maxSpeed;
+        squareMinSpeed = minSpeed * minSpeed;
 
         squarePerceptionRadius = perceptionRadius * perceptionRadius;
         squareAvoidanceRadius = squarePerceptionRadius * avoidanceRadiusMultiplier * avoidanceRadiusMultiplier;
@@ -72,18 +78,31 @@ public class BoidManager : MonoBehaviour
         
         foreach (BoidAgent boid in boids)
         {            
-
+            
             List<Transform> context = GetNearbyObjects(boid);
             Vector2 move = behavior.CalculateMove(boid, context, this);
+            var _currentRotation = boid.transform.rotation;
+            var _direction = move;
+            
             move *= driveFactor;
-
           
             if(move.sqrMagnitude > squareMaxSpeed)
             {
                 move = move.normalized * maxSpeed;
             }
+            if (move.sqrMagnitude < squareMinSpeed)
+            {
+                move = move.normalized * minSpeed;
+            }
 
-            boid.Move(move);
+            var _rotation = Quaternion.FromToRotation(Vector2.up, _direction.normalized);
+            if(_rotation != _currentRotation)
+            {
+                var ip = Mathf.Exp(-4.0f * Time.deltaTime);
+                _rotation = Quaternion.Slerp(_rotation, _currentRotation, ip);
+            }
+
+            boid.Move(move, _rotation);
 
             Vector3 velocityData = move;
             float speedData = move.magnitude;

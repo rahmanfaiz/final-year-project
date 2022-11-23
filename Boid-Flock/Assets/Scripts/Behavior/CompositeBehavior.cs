@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(menuName = "Behavior/Composite")]
 public class CompositeBehavior : BoidBehavior
 {
     public BoidBehavior[] behaviors;
+
+    [Range(0,10)]
     public float[] weights;
 
     public override Vector2 CalculateMove(BoidAgent agent, List<Transform> context, BoidManager flock)
@@ -20,9 +23,11 @@ public class CompositeBehavior : BoidBehavior
         //nge-set up move
         Vector2 move = Vector2.zero;
 
+
         //iterasi keseluruhan behavior
         for (int i = 0; i < behaviors.Length; i++)
         {
+            
             Vector2 partialMove = behaviors[i].CalculateMove(agent, context, flock) * weights[i];
 
             if (partialMove != Vector2.zero)
