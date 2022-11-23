@@ -1393,6 +1393,7 @@ MonoBehaviour:
   boidsQuantity: 150
   driveFactor: 10
   maxSpeed: 5
+  minSpeed: 1
   perceptionRadius: 1.5
   avoidanceRadiusMultiplier: 0.4
 --- !u!4 &455611972
@@ -3547,6 +3548,7 @@ MonoBehaviour:
   boidsQuantity: 10
   driveFactor: 10
   maxSpeed: 5
+  minSpeed: 5
   perceptionRadius: 1.5
   avoidanceRadiusMultiplier: 0.4
 --- !u!4 &1066742641

@@ -37,7 +37,25 @@ public class RTSCamera : MonoBehaviour
         panBorder.x = Screen.width - panBorderThickness;
         panBorder.y = Screen.height - panBorderThickness;
 
-        if (Input.GetKey(KeyCode.W) || Input.mousePosition.y >= panBorder.y)
+        if (Input.GetKey(KeyCode.W))
+        {
+            pos.y += panSpeed * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            pos.y -= panSpeed * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            pos.x += panSpeed * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            pos.x -= panSpeed * Time.deltaTime;
+        }
+
+        /*
+                 if (Input.GetKey(KeyCode.W) || Input.mousePosition.y >= panBorder.y)
         {
             pos.y += panSpeed * Time.deltaTime;
         }
@@ -53,6 +71,7 @@ public class RTSCamera : MonoBehaviour
         {
             pos.x -= panSpeed * Time.deltaTime;
         }
+         */
 
         targetZoom -= Input.mouseScrollDelta.y * sensitivity;
         targetZoom = Mathf.Clamp(targetZoom, maxZoom, minZoom);

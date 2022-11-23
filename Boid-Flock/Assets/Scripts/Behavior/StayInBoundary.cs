@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StayInBoundary : MonoBehaviour
+public class StayInBoundary : BoidBehavior
 {
-    // Start is called before the first frame update
-    void Start()
+    public override Vector2 CalculateMove(BoidAgent agent, List<Transform> context, BoidManager flock)
     {
-        
+        throw new System.NotImplementedException();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

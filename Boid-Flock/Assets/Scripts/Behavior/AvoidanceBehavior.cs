@@ -17,23 +17,26 @@ public class AvoidanceBehavior : BoidBehavior
 
         //nambahin semua posisi dari neighbour trus direratain
         Vector2 avoidanceMove = Vector2.zero;
-        int nAvoid = 0;
+        int _steps = 0;
         foreach (Transform item in context)
         {
             Vector3 closestPoint = item.gameObject.GetComponent<Collider2D>().ClosestPoint(agent.transform.position);
             if (Vector2.SqrMagnitude(closestPoint - agent.transform.position) < flock.SquareAvoidanceRadius)
             {
-                nAvoid++;
-                avoidanceMove += (Vector2)(agent.transform.position - item.position);
+                _steps++;
+                var _distance = Vector2.Distance(agent.transform.position, item.position);
+                avoidanceMove += (Vector2) Vector3.Normalize(agent.transform.position - item.position) / Mathf.Pow(_distance, 2);
+
+                //avoidanceMove += (Vector2)(agent.transform.position - item.position);
             }
             
         }
 
         //avoidanceMove = Vector2.SmoothDamp(agent.transform.up, avoidanceMove, ref currentVelocity, smoothTime);
 
-        if (nAvoid > 0)
+        if (_steps > 0)
         {
-            avoidanceMove /= nAvoid;
+            avoidanceMove /= _steps;
         }
 
         

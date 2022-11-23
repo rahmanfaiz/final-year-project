@@ -15,10 +15,11 @@ public class BoidAgent : MonoBehaviour
         agentCollider = GetComponent<Collider2D>();
     }
 
-    public void Move(Vector2 velocity)
+    public void Move(Vector2 velocity, Quaternion rotation)
     {
         currentVelocity = velocity;
         transform.up = velocity;
         transform.position += (Vector3) velocity * Time.deltaTime;
+        transform.rotation = rotation;
     }
 }
