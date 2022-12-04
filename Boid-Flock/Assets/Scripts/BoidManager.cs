@@ -38,13 +38,16 @@ public class BoidManager : MonoBehaviour
     [Range(0f, 1f)]
     public float avoidanceRadiusMultiplier = 0.5f;
 
+    [Range(0f, 1f)]
+    public float velocityVariation = 0.1f;
+
     //ease the math load
     float squareMaxSpeed;
     float squareMinSpeed;
     float squarePerceptionRadius;
     float squareAvoidanceRadius;
     public float SquareAvoidanceRadius { get { return squareAvoidanceRadius; } }
-
+    float noiseOffset;
 
     // Start is called before the first frame update
     void Start()
@@ -55,7 +58,8 @@ public class BoidManager : MonoBehaviour
 
         squarePerceptionRadius = perceptionRadius * perceptionRadius;
         squareAvoidanceRadius = squarePerceptionRadius * avoidanceRadiusMultiplier * avoidanceRadiusMultiplier;
-        
+
+        noiseOffset = Random.Range(0f, 1f) * 10.0f;
 
         for (int i = 0; i < boidsQuantity; i++)
         {
@@ -83,7 +87,9 @@ public class BoidManager : MonoBehaviour
             Vector2 move = behavior.CalculateMove(boid, context, this);
             var _currentRotation = boid.transform.rotation;
             var _direction = move;
+
             
+
             move *= driveFactor;
           
             if(move.sqrMagnitude > squareMaxSpeed)
@@ -102,7 +108,11 @@ public class BoidManager : MonoBehaviour
                 _rotation = Quaternion.Slerp(_rotation, _currentRotation, ip);
             }
 
-            boid.Move(move, _rotation);
+            var _noise = Mathf.PerlinNoise(Time.time, noiseOffset);
+            var _noisedVelocity = move * (1f + _noise * velocityVariation);
+
+            Debug.Log(_noisedVelocity);
+            boid.Move(_noisedVelocity, _rotation);
 
             Vector3 velocityData = move;
             float speedData = move.magnitude;
