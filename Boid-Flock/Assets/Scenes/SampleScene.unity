@@ -1391,12 +1391,12 @@ MonoBehaviour:
   boidPrefab: {fileID: 2671170046303570148, guid: 2916ef6b46b3ca34abbf26c64a9d92e7, type: 3}
   behavior: {fileID: 11400000, guid: 557d5a705a39c074fb64e3e066907a76, type: 2}
   boidsQuantity: 150
-  driveFactor: 10
-  maxSpeed: 5
-  minSpeed: 1
+  driveFactor: 1
+  maxSpeed: 10
+  minSpeed: 4
   perceptionRadius: 1.5
   avoidanceRadiusMultiplier: 0.4
-  velocityVariation: 0.01
+  velocityVariation: 1
 --- !u!4 &455611972
 Transform:
   m_ObjectHideFlags: 0

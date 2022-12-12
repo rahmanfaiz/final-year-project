@@ -59,7 +59,7 @@ public class BoidManager : MonoBehaviour
         squarePerceptionRadius = perceptionRadius * perceptionRadius;
         squareAvoidanceRadius = squarePerceptionRadius * avoidanceRadiusMultiplier * avoidanceRadiusMultiplier;
 
-        noiseOffset = Random.Range(0f, 1f) * 10.0f;
+        noiseOffset = Random.Range(-2f, 2f) * 10.0f;
 
         for (int i = 0; i < boidsQuantity; i++)
         {
@@ -91,15 +91,19 @@ public class BoidManager : MonoBehaviour
             
 
             move *= driveFactor;
-          
-            if(move.sqrMagnitude > squareMaxSpeed)
-            {
-                move = move.normalized * maxSpeed;
-            }
+            var _noise = Mathf.PerlinNoise(Time.time, noiseOffset);
+            //Debug.Log("Noise " + _noise);
+            move *= (1f + _noise * velocityVariation);
+
             if (move.sqrMagnitude < squareMinSpeed)
             {
                 move = move.normalized * minSpeed;
             }
+/*            if (move.sqrMagnitude > squareMaxSpeed)
+            {
+                move = move.normalized * maxSpeed;
+            }*/
+
 
             var _rotation = Quaternion.FromToRotation(Vector2.up, _direction.normalized);
             if(_rotation != _currentRotation)
@@ -108,14 +112,16 @@ public class BoidManager : MonoBehaviour
                 _rotation = Quaternion.Slerp(_rotation, _currentRotation, ip);
             }
 
-            var _noise = Mathf.PerlinNoise(Time.time, noiseOffset);
-            var _noisedVelocity = move * (1f + _noise * velocityVariation);
+            /*            var _noise = Mathf.PerlinNoise(Time.time, noiseOffset);
+                        var _noisedVelocity = move * (1f + _noise * velocityVariation);
 
-            Debug.Log(_noisedVelocity);
-            boid.Move(_noisedVelocity, _rotation);
-
+                        Debug.Log(_noisedVelocity.magnitude);
+                        boid.Move(_noisedVelocity, _rotation);*/
+            
+            Debug.Log(move.magnitude);
+            boid.Move(move, _rotation);
             Vector3 velocityData = move;
-            float speedData = move.magnitude;
+            float speedData = velocityData.magnitude;
 
             if (isPrintingData)
             {
