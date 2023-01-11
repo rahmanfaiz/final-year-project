@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1e9b3646a00a24db6f6df774075af5, type: 3}
   m_Name: Containment
   m_EditorClassIdentifier: 
-  _minValue: {x: 1, y: 1}
+  _minValue: {x: 0, y: 0}
   _maxValue: {x: 20, y: 20}
-  _stayForce: 5
+  _stayForce: 1000

@@ -9,7 +9,8 @@ public class CasesManager : MonoBehaviour
     [SerializeField] BoidManager _boidManager;
     [SerializeField] BoidBehavior[] _behaviors;  
     [SerializeField] Button[] _buttons;   
-    [SerializeField] StayInRadiusBehavior _containment;
+    // [SerializeField] StayInRadiusBehavior _containmentCircle;
+    // [SerializeField] StayInBoundary _containmentBox;
 
     public void ApplyCase(int buttonID){
         if(_behaviors != null && _behaviors.Length == _buttons.Length){
@@ -21,10 +22,12 @@ public class CasesManager : MonoBehaviour
         _boidManager.behavior = _behavior;
     }
 
-    void OnDrawGizmos(){
-        Vector2 _center = _containment.center;
-        float _radius = _containment.radius;
-        Gizmos.DrawWireSphere(_center,_radius);
-    }
+    // void OnDrawGizmos(){
+    //     // Vector2 _center = _containment.center;
+    //     // float _radius = _containment.radius;
+    //     // Gizmos.DrawWireSphere(_center,_radius);
+    //     Vector2 _center = (_containmentBox._maxValue - _containmentBox._minValue)*0.5f;
+    //     Gizmos.DrawWireCube(_center, _containmentBox._maxValue);
+    // }
 
 }

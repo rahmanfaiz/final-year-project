@@ -38,7 +38,7 @@ public class BoidManager : MonoBehaviour
     [Range(0f, 1f)]
     public float avoidanceRadiusMultiplier = 0.5f;
 
-    [Range(0f, 1f)]
+    [Range(0f, 10f)]
     public float velocityVariation = 0.1f;
 
     //ease the math load
@@ -89,7 +89,6 @@ public class BoidManager : MonoBehaviour
             var _direction = move;
 
             
-
             move *= driveFactor;
             var _noise = Mathf.PerlinNoise(Time.time, noiseOffset);
             //Debug.Log("Noise " + _noise);
@@ -99,10 +98,10 @@ public class BoidManager : MonoBehaviour
             {
                 move = move.normalized * minSpeed;
             }
-/*            if (move.sqrMagnitude > squareMaxSpeed)
-            {
-                move = move.normalized * maxSpeed;
-            }*/
+            // if (move.sqrMagnitude > squareMaxSpeed)
+            // {
+            //     move = move.normalized * maxSpeed;
+            // }
 
 
             var _rotation = Quaternion.FromToRotation(Vector2.up, _direction.normalized);
@@ -130,8 +129,8 @@ public class BoidManager : MonoBehaviour
                 string objectname = boid.name;
                 
                 speedDataFile.objectname = objectname;
-                speedDataFile.value1 = speedData;
-                speedDataFile.value2 = Time.timeSinceLevelLoad;
+                speedDataFile.value1 = speedData.ToString(".000");
+                speedDataFile.value2 = Time.timeSinceLevelLoad.ToString(".000");
 
                 CSVManager.Instance.InitAndWriteCSV(speedDataFile);
                 //CSVManager.Instance.WriteCSV(heading, boid.name, speedData, Time.timeSinceLevelLoad);
@@ -139,7 +138,7 @@ public class BoidManager : MonoBehaviour
                 //-----Cluster Data------
 
                 Debug.Log(Time.timeSinceLevelLoad);
-                CSVManager.Instance.InitAndWriteCSV(clusterDataFile);
+                //CSVManager.Instance.InitAndWriteCSV(clusterDataFile);
 
             }
 
@@ -160,7 +159,7 @@ public class BoidManager : MonoBehaviour
                 clusterDataFile.objectinteracted = c.name;
                 context.Add(c.transform);
             }
-            clusterDataFile.value2 = Time.timeSinceLevelLoad;
+            clusterDataFile.value2 = Time.timeSinceLevelLoad.ToString(".000");
         }
 
 

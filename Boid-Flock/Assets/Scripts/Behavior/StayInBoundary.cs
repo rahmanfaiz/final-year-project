@@ -5,8 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Behavior/Stay in Boundary")]
 public class StayInBoundary : BoidBehavior
 {
-    [SerializeField] private Vector2 _minValue;
-    [SerializeField] private Vector2 _maxValue;
+    [SerializeField] public Vector2 _minValue;
+    [SerializeField] public Vector2 _maxValue;
     [SerializeField] private float _stayForce = 5f;
     Vector2 move;
 

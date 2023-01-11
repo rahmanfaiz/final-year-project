@@ -9,8 +9,8 @@ public class DataList : ScriptableObject
     [HideInInspector] public string objectname;
     public string heading;
     [HideInInspector] public string objectinteracted;
-    [HideInInspector] public float value1;
-    [HideInInspector] public float value2;
+    [HideInInspector] public string value1;
+    [HideInInspector] public string value2;
     public bool hasInit;
     public bool hasValue;
     public bool isJustString;

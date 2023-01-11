@@ -1914,13 +1914,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7971ec2e77518274195a6de74d054d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPrintingData: 0
+  isPrintingData: 1
   speedDataFile: {fileID: 11400000, guid: dc30b933c7ac1c8488affd25c62bb542, type: 2}
   clusterDataFile: {fileID: 11400000, guid: 2a9366b6c532df346a893bb4b815a557, type: 2}
   boidPrefab: {fileID: 2671170046303570148, guid: 2916ef6b46b3ca34abbf26c64a9d92e7, type: 3}
-  behavior: {fileID: 11400000, guid: 1dc24a60c0ad4e34289742ec71c2d4e9, type: 2}
+  behavior: {fileID: 11400000, guid: c6267435626587740a3e228ebc15cd48, type: 2}
   boidsQuantity: 150
-  driveFactor: 1
+  driveFactor: 2
   maxSpeed: 10
   minSpeed: 4
   perceptionRadius: 1.5
@@ -3525,7 +3525,6 @@ MonoBehaviour:
   - {fileID: 627797063}
   - {fileID: 953995182}
   - {fileID: 185630769}
-  _containment: {fileID: 11400000, guid: 1cf152b23b15bcd44965f23e46b97338, type: 2}
 --- !u!114 &2071829428
 MonoBehaviour:
   m_ObjectHideFlags: 0
