@@ -117,8 +117,9 @@ public class BoidManager : MonoBehaviour
                         Debug.Log(_noisedVelocity.magnitude);
                         boid.Move(_noisedVelocity, _rotation);*/
             
-            Debug.Log(move.magnitude);
+            //Debug.Log(move.magnitude);
             boid.Move(move, _rotation);
+            Debug.Log(Time.timeSinceLevelLoad);
             Vector3 velocityData = move;
             float speedData = velocityData.magnitude;
 
