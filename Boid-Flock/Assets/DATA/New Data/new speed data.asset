@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26820af05c451984ab58e5b822a47229, type: 3}
-  m_Name: Speed Data
+  m_Name: new speed data
   m_EditorClassIdentifier: 
-  filename: data1111_1
+  filename: data1111
   objectname: Boid149
   heading: Boid,Speed,Time,
   objectinteracted: 
   value1: 4.539
   value2: 34.429
-  hasInit: 1
+  hasInit: 0
   hasValue: 1
   isJustString: 0
