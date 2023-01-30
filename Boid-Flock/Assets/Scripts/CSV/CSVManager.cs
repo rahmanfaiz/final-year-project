@@ -9,8 +9,8 @@ public class CSVManager : MonoBehaviour
     public static CSVManager Instance { get; private set; }
 
     [SerializeField] private string fileName = "";
-    string filename;
-    bool hasInit = false;
+    string _filename;
+    public bool hasInit = false;
     TextWriter tw;
 
 
@@ -19,7 +19,7 @@ public class CSVManager : MonoBehaviour
       if(Instance != null && Instance != this) { Destroy(this); }
       else { Instance = this; }
 
-      filename = Application.dataPath + "/" + fileName + ".csv";
+      _filename = Application.dataPath + "/" + fileName + ".csv";
       
     }
 
@@ -44,8 +44,9 @@ public class CSVManager : MonoBehaviour
     }
 
 
-    public void WriteCSV(string heading, string name, float value, float timeElapsed)
+    public void WriteCSV(string filename, string heading, string name, float value, float timeElapsed)
     {
+        filename = Application.dataPath + "/DATA/" + filename + ".csv";
 
         if (!hasInit) { 
             tw = new StreamWriter(filename, false);
@@ -53,7 +54,7 @@ public class CSVManager : MonoBehaviour
             tw.Close();
             hasInit = true;
         }
-
+        
         tw = new StreamWriter(filename, true);
         tw.WriteLine(name + "," + value + "," + timeElapsed);
         tw.Close();

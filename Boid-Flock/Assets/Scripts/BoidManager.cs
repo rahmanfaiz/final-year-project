@@ -49,10 +49,12 @@ public class BoidManager : MonoBehaviour
     public float SquareAvoidanceRadius { get { return squareAvoidanceRadius; } }
     float noiseOffset;
 
+    Vector2 move;
+
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(Screen.width + " " + Screen.height);
+        //Debug.Log(Screen.width + " " + Screen.height);
         squareMaxSpeed = maxSpeed * maxSpeed;
         squareMinSpeed = minSpeed * minSpeed;
 
@@ -75,16 +77,13 @@ public class BoidManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-        
+
         foreach (BoidAgent boid in boids)
-        {            
+        {  
+        
             
             List<Transform> context = GetNearbyObjects(boid);
-            Vector2 move = behavior.CalculateMove(boid, context, this);
+            move = behavior.CalculateMove(boid, context, this);
             var _currentRotation = boid.transform.rotation;
             var _direction = move;
 
@@ -118,11 +117,14 @@ public class BoidManager : MonoBehaviour
                         boid.Move(_noisedVelocity, _rotation);*/
             
             //Debug.Log(move.magnitude);
-            boid.Move(move, _rotation);
-            Debug.Log(Time.timeSinceLevelLoad);
-            Vector3 velocityData = move;
-            float speedData = velocityData.magnitude;
 
+
+
+            //Debug.Log(Time.timeSinceLevelLoad);
+            boid.Move(move, _rotation);
+            Vector3 velocityData = move;
+
+            float speedData = velocityData.magnitude;
             if (isPrintingData)
             {
                 //-----Speed Data------
@@ -141,15 +143,14 @@ public class BoidManager : MonoBehaviour
                 Debug.Log(Time.timeSinceLevelLoad);
                 //CSVManager.Instance.InitAndWriteCSV(clusterDataFile);
 
-            }
-
+            }  
+            
+    
         }   
     }
 
     private List<Transform> GetNearbyObjects(BoidAgent boid)
     {
-
-
         List<Transform> context = new List<Transform>();
         Collider2D[] contextColliders = Physics2D.OverlapCircleAll(boid.transform.position, perceptionRadius);
         foreach (Collider2D c in contextColliders)
@@ -177,5 +178,9 @@ public class BoidManager : MonoBehaviour
             newBoid.name = "Boid" + i;
             boids.Add(newBoid);
         }
+    }
+
+    public void ResetScene(){    
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

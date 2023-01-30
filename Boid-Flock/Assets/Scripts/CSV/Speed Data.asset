@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26820af05c451984ab58e5b822a47229, type: 3}
   m_Name: Speed Data
   m_EditorClassIdentifier: 
-  filename: data1111_1
+  filename: data1111_test
   objectname: Boid149
   heading: Boid,Speed,Time,
   objectinteracted: 
-  value1: 4.539
-  value2: 34.429
+  value1: 7.726
+  value2: 11.012
   hasInit: 1
   hasValue: 1
   isJustString: 0

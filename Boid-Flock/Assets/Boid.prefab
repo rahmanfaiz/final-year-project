@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2925619132584618264}
   - component: {fileID: 2671170046303570148}
   - component: {fileID: 7905980074472379679}
+  - component: {fileID: -4419025602229133446}
   m_Layer: 0
   m_Name: Boid
   m_TagString: Untagged
@@ -161,6 +162,20 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &-4419025602229133446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5585893285046269407}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 433d9b48bc1be7b47b346f6e1c0e7bb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 0
+  UpdateDelay: 1
 --- !u!1 &6336605100909040907
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +247,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3552abb5909e1434b94eddae56b27cf7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 99606ff430c529d44ad48e1e284d8002, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
