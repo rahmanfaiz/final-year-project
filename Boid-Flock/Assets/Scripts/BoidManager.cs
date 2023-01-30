@@ -28,7 +28,7 @@ public class BoidManager : MonoBehaviour
     [Range(1f, 100f)]
     public float maxSpeed  = 5f;
 
-    [Range(1f, 100f)]
+    [Range(0.1f, 100f)]
     public float minSpeed = 1f;
     //public Vector2 minMaxSpeedLimit;
 
@@ -93,10 +93,10 @@ public class BoidManager : MonoBehaviour
             //Debug.Log("Noise " + _noise);
             move *= (1f + _noise * velocityVariation);
 
-            // if (move.sqrMagnitude < squareMinSpeed)
-            // {
-            //     move = move.normalized * minSpeed;
-            // }
+            if (move.sqrMagnitude < squareMinSpeed)
+            {
+                move = move.normalized * minSpeed;
+            }
             // if (move.sqrMagnitude > squareMaxSpeed)
             // {
             //     move = move.normalized * maxSpeed;

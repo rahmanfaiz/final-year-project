@@ -20,7 +20,7 @@ public class AlignmentBehavior : BoidBehavior
             alignmentMove += (Vector2)item.transform.up;
         }
         alignmentMove /= context.Count;
-        
+        //Debug.Log("Alignment: " + context.Count);
         
         
         return alignmentMove;

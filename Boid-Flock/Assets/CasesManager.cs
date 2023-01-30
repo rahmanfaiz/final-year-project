@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CasesManager : MonoBehaviour
 {
 
     [SerializeField] BoidManager _boidManager;
     [SerializeField] BoidBehavior[] _behaviors;  
-    [SerializeField] Button[] _buttons;   
+    [SerializeField] Button[] _buttons;
+    [SerializeField] TextMeshProUGUI textMesh;
+
     // [SerializeField] StayInRadiusBehavior _containmentCircle;
     // [SerializeField] StayInBoundary _containmentBox;
 
@@ -20,6 +23,10 @@ public class CasesManager : MonoBehaviour
 
     public void SetBehavior(BoidBehavior _behavior){
         _boidManager.behavior = _behavior;
+    }
+
+    public void SetTextCase(string caseNumber){
+        textMesh.text = caseNumber;
     }
 
     // void OnDrawGizmos(){

@@ -29,7 +29,7 @@ public class CohesionBehavior : BoidBehavior
 
         //biar steer-nya smooth 
         cohesionMove = Vector2.SmoothDamp(agent.transform.up, cohesionMove, ref currentVelocity, smoothTime);
-        
+        //Debug.Log("Cohesion: " + context.Count);
 
         return cohesionMove;
     }

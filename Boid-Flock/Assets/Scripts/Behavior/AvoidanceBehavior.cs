@@ -39,6 +39,8 @@ public class AvoidanceBehavior : BoidBehavior
             avoidanceMove /= _steps;
         }
 
+        //Debug.Log("Separation: " + _steps);
+
         
 
         return avoidanceMove;
