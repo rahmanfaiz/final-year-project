@@ -11,11 +11,11 @@ public class CohesionBehavior : BoidBehavior
 
     public override Vector2 CalculateMove(BoidAgent agent, List<Transform> context, BoidManager flock)
     {
-        //kalau ga ada neighbour, tidak didapatkan vektor yang ngerubah posisinya
+        //Kalau ga ada neighbour, tidak didapatkan vektor yang ngerubah posisinya
         if (context.Count == 0) 
             return Vector2.zero;
 
-        //nambahin semua posisi dari neighbour trus direratain
+        //Nambahin semua posisi dari neighbour trus direratain
         Vector2 cohesionMove = Vector2.zero;
         foreach (Transform item in context)
         {
@@ -24,10 +24,10 @@ public class CohesionBehavior : BoidBehavior
         
         cohesionMove /= context.Count;
 
-        //buat offsetnya dari posisi agent
+        //Buat offsetnya dari posisi agent
         cohesionMove -= (Vector2)agent.transform.position;
 
-        //biar steer-nya smooth 
+        //Biar steer-nya smooth 
         cohesionMove = Vector2.SmoothDamp(agent.transform.up, cohesionMove, ref currentVelocity, smoothTime);
         //Debug.Log("Cohesion: " + context.Count);
 

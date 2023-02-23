@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Behavior/Alignment")]
 public class AlignmentBehavior : BoidBehavior
 {
-    [SerializeField] private bool _isUsingFactor;
 
     public override Vector2 CalculateMove(BoidAgent agent, List<Transform> context, BoidManager flock)
     {

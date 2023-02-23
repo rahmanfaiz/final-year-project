@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7ab043ebefed0e42959bd61b2515150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentVelocity: {x: 0, y: 0}
+  CurrentVelocity: {x: 0, y: 0}
 --- !u!96 &7905980074472379679
 TrailRenderer:
   serializedVersion: 2

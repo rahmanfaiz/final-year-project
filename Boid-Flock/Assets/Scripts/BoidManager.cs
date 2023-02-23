@@ -5,15 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class BoidManager : MonoBehaviour
 {
-    [Header("Data")]
+    #region Test 
+    /*[Header("Data")]
     [SerializeField] private bool isPrintingData;
     public DataList speedDataFile;
-    public DataList clusterDataFile;
+    public DataList clusterDataFile;*/
+    #endregion
 
     [Header("Boid References")]
     public BoidAgent boidPrefab;
     List<BoidAgent> boids = new List<BoidAgent>();
-    //public BoidBehavior defaultBehavior;
     public BoidBehavior behavior;
 
     const float BOID_DENSITY = 0.1f;
@@ -23,14 +24,13 @@ public class BoidManager : MonoBehaviour
     public int boidsQuantity = 250;
 
     [Range(1f, 100f)]
-    public float driveFactor = 10f; //help scale the displacement
+    public float driveFactor = 10f; 
     
     [Range(1f, 100f)]
     public float maxSpeed  = 5f;
 
     [Range(0.1f, 100f)]
     public float minSpeed = 1f;
-    //public Vector2 minMaxSpeedLimit;
 
     [Range(1f, 10f)]
     public float perceptionRadius = 1.5f;
@@ -41,27 +41,27 @@ public class BoidManager : MonoBehaviour
     [Range(0f, 10f)]
     public float velocityVariation = 0.1f;
 
-    //ease the math load
-    float squareMaxSpeed;
+    
+    /*float squareMaxSpeed;*/
     float squareMinSpeed;
     float squarePerceptionRadius;
     float squareAvoidanceRadius;
     public float SquareAvoidanceRadius { get { return squareAvoidanceRadius; } }
-    float noiseOffset;
+    /*float noiseOffset;*/
 
     Vector2 move;
+    [SerializeField] Camera mainCamera;
 
     // Start is called before the first frame update
     void Start()
     {
-        //Debug.Log(Screen.width + " " + Screen.height);
-        squareMaxSpeed = maxSpeed * maxSpeed;
+        /*squareMaxSpeed = maxSpeed * maxSpeed;*/
         squareMinSpeed = minSpeed * minSpeed;
 
         squarePerceptionRadius = perceptionRadius * perceptionRadius;
         squareAvoidanceRadius = squarePerceptionRadius * avoidanceRadiusMultiplier * avoidanceRadiusMultiplier;
 
-        noiseOffset = Random.Range(-2f, 2f) * 10.0f;
+        /*noiseOffset = Random.Range(-2f, 2f) * 10.0f;*/
 
         for (int i = 0; i < boidsQuantity; i++)
         {
@@ -71,7 +71,7 @@ public class BoidManager : MonoBehaviour
             newBoid.name = "Boid" + i;
             boids.Add(newBoid);
         }
-        //RandomSpawnInCircle();
+
     }
 
     // Update is called once per frame
@@ -80,28 +80,20 @@ public class BoidManager : MonoBehaviour
 
         foreach (BoidAgent boid in boids)
         {  
-        
-            
             List<Transform> context = GetNearbyObjects(boid);
             move = behavior.CalculateMove(boid, context, this);
             var _currentRotation = boid.transform.rotation;
             var _direction = move;
 
-            
             move *= driveFactor;
-            var _noise = Mathf.PerlinNoise(Time.time, noiseOffset);
-            //Debug.Log("Noise " + _noise);
-            move *= (1f + _noise * velocityVariation);
+            /*var _noise = Mathf.PerlinNoise(Time.time, noiseOffset);*/
+            /*move *= (1f + _noise * velocityVariation);*/
 
             if (move.sqrMagnitude < squareMinSpeed)
             {
                 move = move.normalized * minSpeed;
             }
-            // if (move.sqrMagnitude > squareMaxSpeed)
-            // {
-            //     move = move.normalized * maxSpeed;
-            // }
-
+          
 
             var _rotation = Quaternion.FromToRotation(Vector2.up, _direction.normalized);
             if(_rotation != _currentRotation)
@@ -110,20 +102,13 @@ public class BoidManager : MonoBehaviour
                 _rotation = Quaternion.Slerp(_rotation, _currentRotation, ip);
             }
 
-            /*            var _noise = Mathf.PerlinNoise(Time.time, noiseOffset);
-                        var _noisedVelocity = move * (1f + _noise * velocityVariation);
-
-                        Debug.Log(_noisedVelocity.magnitude);
-                        boid.Move(_noisedVelocity, _rotation);*/
-            
             //Debug.Log(move.magnitude);
-
-
-
             //Debug.Log(Time.timeSinceLevelLoad);
+            
             boid.Move(move, _rotation);
-            Vector3 velocityData = move;
 
+            #region Print Data Test
+/*            Vector3 velocityData = move;
             float speedData = velocityData.magnitude;
             if (isPrintingData)
             {
@@ -143,10 +128,9 @@ public class BoidManager : MonoBehaviour
                 Debug.Log(Time.timeSinceLevelLoad);
                 //CSVManager.Instance.InitAndWriteCSV(clusterDataFile);
 
-            }  
-            
-    
-        }   
+            }*/
+            #endregion
+        }
     }
 
     private List<Transform> GetNearbyObjects(BoidAgent boid)
@@ -155,19 +139,39 @@ public class BoidManager : MonoBehaviour
         Collider2D[] contextColliders = Physics2D.OverlapCircleAll(boid.transform.position, perceptionRadius);
         foreach (Collider2D c in contextColliders)
         {
-            clusterDataFile.objectname = boid.name;
             if (c != boid.AgentCollider)
             {
-                clusterDataFile.objectinteracted = c.name;
                 context.Add(c.transform);
             }
-            clusterDataFile.value2 = Time.timeSinceLevelLoad.ToString(".000");
+            
         }
 
 
         return context;
     }
 
+    #region Test 1
+    /*   private List<Transform> GetNearbyObjects(BoidAgent boid)
+       {
+           List<Transform> context = new List<Transform>();
+           Collider2D[] contextColliders = Physics2D.OverlapCircleAll(boid.transform.position, perceptionRadius);
+           foreach (Collider2D c in contextColliders)
+           {
+               clusterDataFile.objectname = boid.name;
+               if (c != boid.AgentCollider)
+               {
+                   clusterDataFile.objectinteracted = c.name;
+                   context.Add(c.transform);
+               }
+               clusterDataFile.value2 = Time.timeSinceLevelLoad.ToString(".000");
+           }
+
+
+           return context;
+       }*/
+    #endregion
+
+    #region Helper
     private void RandomSpawnInCircle()
     {
         for (int i = 0; i < boidsQuantity; i++)
@@ -180,7 +184,14 @@ public class BoidManager : MonoBehaviour
         }
     }
 
+    public Vector2 GetMousePosition()
+    {
+        Vector2 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        return mousePos;
+    }
+
     public void ResetScene(){    
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    #endregion
 }
