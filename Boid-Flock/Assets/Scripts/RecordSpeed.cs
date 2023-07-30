@@ -22,7 +22,7 @@ private IEnumerator SpeedReckoner() {
         yield return timedWait;
 
         string fileName = this.transform.name + "_data4111";
-        CSVManager.Instance.WriteCSV(fileName, "speed", this.transform.name, Speed, Time.time );
+        //CSVManager.Instance.WriteCSV(fileName, "speed", this.transform.name, Speed, Time.time );
 
         Debug.Log( this.transform.name + " Speed: "  + Speed + ", Time Elapsed: " + Time.time );
 

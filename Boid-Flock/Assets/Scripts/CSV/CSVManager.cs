@@ -8,8 +8,8 @@ public class CSVManager : MonoBehaviour
 {
     public static CSVManager Instance { get; private set; }
 
-    [SerializeField] private string fileName = "";
-    string _filename;
+    //[SerializeField] private string fileName = "";
+    //string _filename;
     public bool hasInit = false;
     TextWriter tw;
 
@@ -19,7 +19,7 @@ public class CSVManager : MonoBehaviour
       if(Instance != null && Instance != this) { Destroy(this); }
       else { Instance = this; }
 
-      _filename = Application.dataPath + "/" + fileName + ".csv";
+      //_filename = Application.dataPath + "/" + fileName + ".csv";
       
     }
 
@@ -38,15 +38,15 @@ public class CSVManager : MonoBehaviour
         }
 
         tw = new StreamWriter(_filename, true);
-        if(file.hasValue) tw.WriteLine(file.objectname + "," + file.value1 + "," + file.value2);
+        //if(file.hasValue) tw.WriteLine(file.objectname + "," + file.value1 + "," + file.value2);
         if (file.isJustString) tw.WriteLine(file.objectname + "," + file.objectinteracted + "," + file.value2);
         tw.Close();
     }
 
 
-    public void WriteCSV(string filename, string heading, string name, float value, float timeElapsed)
+    public void WriteCSV(string filename, string heading, double value, float timeElapsed)
     {
-        filename = Application.dataPath + "/DATA/" + filename + ".csv";
+        filename = Application.dataPath + "/New Data/" + filename + ".csv";
 
         if (!hasInit) { 
             tw = new StreamWriter(filename, false);
@@ -56,7 +56,7 @@ public class CSVManager : MonoBehaviour
         }
         
         tw = new StreamWriter(filename, true);
-        tw.WriteLine(name + "," + value + "," + timeElapsed);
+        tw.WriteLine(value + "," + timeElapsed);
         tw.Close();
     }
     
