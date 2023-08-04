@@ -34,7 +34,6 @@ private IEnumerator SpeedReckoner() {
 
         Speed = deltaPosition / deltaTime;
 
-
         lastPosition = transform.position;
         lastTimestamp = Time.time;
 

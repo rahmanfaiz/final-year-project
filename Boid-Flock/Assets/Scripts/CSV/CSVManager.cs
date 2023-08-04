@@ -59,5 +59,23 @@ public class CSVManager : MonoBehaviour
         tw.WriteLine(value + "," + timeElapsed);
         tw.Close();
     }
-    
+
+    public void WritePositionAndVelocityData(string filename, string heading, float xPos, float yPos, float xVel, float yVel, float timeElapsed)
+    {
+   
+        filename = Application.dataPath + "/New Data/" + filename + ".csv";
+
+        if (!hasInit)
+        {
+            tw = new StreamWriter(filename, false);
+            tw.WriteLine(heading);
+            tw.Close();
+            hasInit = true;
+        }
+
+        tw = new StreamWriter(filename, true);
+        tw.WriteLine(xPos + "," + yPos + "," + xVel + "," + yVel + "," + timeElapsed);
+        tw.Close();
+    }
+
 }

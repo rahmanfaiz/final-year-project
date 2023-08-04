@@ -63,7 +63,7 @@ public class BoidManager : MonoBehaviour
     //Pengambilan Data
     public int[,] Mt;
     double gammaM;
-    //[SerializeField] double gammaT;
+
 
     // Start is called before the first frame update
     void Start()
