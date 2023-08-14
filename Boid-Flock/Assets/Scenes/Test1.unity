@@ -1980,10 +1980,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7971ec2e77518274195a6de74d054d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPrintingData: 0
+  isPrintingData: 1
   StartPos: {fileID: 1353520063}
   boidPrefab: {fileID: 2671170046303570148, guid: 2916ef6b46b3ca34abbf26c64a9d92e7, type: 3}
-  behavior: {fileID: 11400000, guid: 734c55f510fdfeb41af3eb4e41bb3562, type: 2}
+  behavior: {fileID: 11400000, guid: 5c85f2cfa731e794b9e10ddfaa08b398, type: 2}
   boidsQuantity: 100
   driveFactor: 1
   maxSpeed: 15

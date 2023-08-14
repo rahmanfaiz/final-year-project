@@ -8,6 +8,7 @@ public class WanderBehavior : BoidBehavior
     public float CircleDistance;
     public float CircleRadius;
     public float AngleChanges;
+    private float wanderAngle;
 
     public override Vector2 CalculateMove(BoidAgent agent, List<Transform> context, BoidManager flock)
     {
@@ -19,9 +20,10 @@ public class WanderBehavior : BoidBehavior
         Vector2 displacement = new Vector2(0, -1);
         displacement *= CircleRadius;
 
-        float wanderAngle = (Random.Range(0, 180) * AngleChanges) - (AngleChanges * .5f);
-
+        
         displacement = SetAngle(displacement, wanderAngle);
+        
+        wanderAngle += (Random.Range(0, 180) * AngleChanges) - (AngleChanges * .5f);
 
         //Debug.Log("CircleCenter: " + circleCenter);
         //Debug.Log("Displacement: " + displacement);
