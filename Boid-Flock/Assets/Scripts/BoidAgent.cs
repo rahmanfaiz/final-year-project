@@ -5,11 +5,14 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class BoidAgent : MonoBehaviour
 {
+    public int id;
     Collider2D agentCollider;
     public Collider2D AgentCollider { get { return agentCollider; } }
-    public Vector2 currentVelocity;
+    public Vector2 CurrentVelocity;
+    [SerializeField] bool canMove = true;
+    [SerializeField] float gizmosRadius;
+    
 
-    // Start is called before the first frame update
     void Start()
     {
         agentCollider = GetComponent<Collider2D>();
@@ -17,9 +20,18 @@ public class BoidAgent : MonoBehaviour
 
     public void Move(Vector2 velocity, Quaternion rotation)
     {
-        currentVelocity = velocity;
+        if (!canMove) return;
+
+        CurrentVelocity = velocity;
+        
         transform.up = velocity;
         transform.position += (Vector3) velocity * Time.deltaTime;
         transform.rotation = rotation;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, gizmosRadius);
     }
 }

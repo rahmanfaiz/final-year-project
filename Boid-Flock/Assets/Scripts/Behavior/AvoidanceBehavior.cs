@@ -18,6 +18,7 @@ public class AvoidanceBehavior : BoidBehavior
         //nambahin semua posisi dari neighbour trus direratain
         Vector2 avoidanceMove = Vector2.zero;
         int _steps = 0;
+
         foreach (Transform item in context)
         {
             Vector3 closestPoint = item.gameObject.GetComponent<Collider2D>().ClosestPoint(agent.transform.position);
@@ -38,6 +39,8 @@ public class AvoidanceBehavior : BoidBehavior
         {
             avoidanceMove /= _steps;
         }
+
+        //Debug.Log("Separation: " + _steps);
 
         
 

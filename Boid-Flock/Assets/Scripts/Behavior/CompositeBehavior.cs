@@ -8,7 +8,7 @@ public class CompositeBehavior : BoidBehavior
 {
     public BoidBehavior[] behaviors;
 
-    [Range(0,10)]
+    [Range(0,100)]
     public float[] weights;
 
     public override Vector2 CalculateMove(BoidAgent agent, List<Transform> context, BoidManager flock)

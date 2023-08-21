@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff3a199d0d318ee4ca316938eb91690c, type: 3}
   m_Name: Wander
   m_EditorClassIdentifier: 
-  CIRCLE_DISTANCE: 100
-  CIRCLE_RADIUS: 4
-  ANGLE_CHANGE: 45
+  CircleDistance: 100
+  CircleRadius: 1
+  AngleChanges: 45

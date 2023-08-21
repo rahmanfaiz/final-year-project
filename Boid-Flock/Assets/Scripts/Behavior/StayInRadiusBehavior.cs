@@ -6,7 +6,7 @@ using UnityEngine;
 public class StayInRadiusBehavior : BoidBehavior
 {
     public Vector2 center;
-    public float radius = 15f;
+    public float radius = 5f;
 
     public override Vector2 CalculateMove(BoidAgent agent, List<Transform> context, BoidManager flock)
     {
@@ -19,4 +19,5 @@ public class StayInRadiusBehavior : BoidBehavior
 
         return centerOffset * t * t;
     }
+
 }

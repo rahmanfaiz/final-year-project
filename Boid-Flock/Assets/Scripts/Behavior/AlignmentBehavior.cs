@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Behavior/Alignment")]
 public class AlignmentBehavior : BoidBehavior
 {
+
     public override Vector2 CalculateMove(BoidAgent agent, List<Transform> context, BoidManager flock)
     {
         //kalau ga ada neighbour, tetep di 'alignment' tersebut
@@ -17,8 +18,12 @@ public class AlignmentBehavior : BoidBehavior
         {
             alignmentMove += (Vector2)item.transform.up;
         }
-        alignmentMove /= context.Count;
-
+        if (context.Count > 0) alignmentMove /= context.Count;
+        //Debug.Log("Alignment: " + context.Count);
+        
+        
         return alignmentMove;
+        
+        
     }
 }
