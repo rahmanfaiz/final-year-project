@@ -56,4 +56,12 @@ public class MathHelper : MonoBehaviour
 
         return sum;
     }
+
+    public Vector2 UnitOf(Vector2 vector)
+    {
+        float magnitude = vector.magnitude;
+        Vector2 result = (1 / magnitude) * vector;
+
+        return result;
+    }
 }

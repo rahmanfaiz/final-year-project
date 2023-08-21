@@ -66,7 +66,7 @@ MonoBehaviour:
   id: 0
   CurrentVelocity: {x: 0, y: 0}
   canMove: 1
-  gizmosRadius: 3.5
+  gizmosRadius: 0
 --- !u!114 &8844127747457122230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 960e72e7a6a89dc4a875566599858800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _schoolName: ' separation 50 no wander'
+  _schoolName: 50_20_20_10_
   Velocity: {x: 0, y: 0}
 --- !u!96 &7905980074472379679
 TrailRenderer:

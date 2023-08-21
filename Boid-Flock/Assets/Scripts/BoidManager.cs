@@ -34,20 +34,12 @@ public class BoidManager : MonoBehaviour
     [Range(1f, 100f)]
     public float maxSpeed  = 5f;
 
-/*    [Range(0.1f, 100f)]
-    public float minSpeed = 1f;*/
-
     [Range(1f, 100f)]
     public float perceptionRadius = 1.5f;
 
     [Range(0f, 1f)]
     public float avoidanceRadiusMultiplier = 0.5f;
 
-    //[Range(0f, 10f)]
-    //public float velocityVariation = 0.1f;
-
-
-    //[SerializeField] List<BoidAgent> _wallContext;
     
     float squareMaxSpeed;
     //float squareMinSpeed;
@@ -57,6 +49,9 @@ public class BoidManager : MonoBehaviour
     /*float noiseOffset;*/
 
     Vector2 move;
+
+    [Header("Other References")]
+    public Container container;
     [SerializeField] Camera mainCamera;
 
 
